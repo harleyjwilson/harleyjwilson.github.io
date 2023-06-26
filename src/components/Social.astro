@@ -1,0 +1,21 @@
+---
+import { SOCIAL } from "../data/social";
+---
+
+<section class="py-4 flex flex-row justify-center gap-6">
+    {
+        SOCIAL.map((social) => (
+            <div>
+                <a class="" href={social.path}>
+                    <img
+                        class="transition ease-in-out duration-300 opacity-75 hover:opacity-100 hover:shadow-lg"
+                        src={social.icon}
+                        alt={social.title}
+                        width="20px"
+                        height="20px"
+                    />
+                </a>
+            </div>
+        ))
+    }
+</section>
