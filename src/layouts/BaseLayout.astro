@@ -1,7 +1,7 @@
 ---
 import "../styles/base.css";
 import BaseHead from "../components/BaseHead.astro";
-
+import Header from "../components/Header.astro";
 const { title } = Astro.props;
 ---
 
@@ -9,7 +9,10 @@ const { title } = Astro.props;
     <head>
         <BaseHead title={title} />
     </head>
-    <body class="mx-auto flex flex-col bg-gray-50">
+    <body
+        class="mx-auto p-4 max-w-2xl h-screen flex flex-col bg-neutral-50 text-neutral-900"
+    >
+        <Header />
         <slot />
     </body>
 </html>

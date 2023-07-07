@@ -1,3 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+    --primary-color: #2563eb; /* TailwindCSS blue-600 */
+}
+
+a:link,
+a:visited,
+a:hover,
+a:focus,
+a:active {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+svg {
+    fill: var(--primary-color);
+}
+
+a:hover,
+svg:hover {
+    filter: brightness(85%);
+}
