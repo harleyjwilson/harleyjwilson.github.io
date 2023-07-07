@@ -1,0 +1,55 @@
+<button id="themeToggle">
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        height="1.25em"
+        viewBox="0 0 512 512"
+    >
+        <path
+            d="M448 256c0-106-86-192-192-192V448c106 0 192-86 192-192zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"
+        ></path>
+    </svg>
+</button>
+
+<script is:inline>
+const theme = (() => {
+    if (
+        typeof localStorage !== "undefined" &&
+        localStorage.getItem("theme")
+    ) {
+        return localStorage.getItem("theme");
+    }
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        return "dark";
+    }
+    return "light";
+})();
+
+if (theme === "light") {
+    document.documentElement.classList.remove("dark");
+    document.getElementById("themeToggle").style.transform = "rotate(0deg)";
+} else {
+    document.documentElement.classList.add("dark");
+    document.getElementById("themeToggle").style.transform =
+        "rotate(90deg)";
+}
+
+window.localStorage.setItem("theme", theme);
+
+const handleToggleClick = () => {
+    document.documentElement.classList.toggle("dark");
+
+    if (document.documentElement.classList.contains("dark")) {
+        localStorage.setItem("theme", "light");
+        document.getElementById("themeToggle").style.transform =
+            "rotate(90deg)";
+    } else {
+        localStorage.setItem("theme", "dark");
+        document.getElementById("themeToggle").style.transform =
+            "rotate(0deg)";
+    }
+};
+
+document
+    .getElementById("themeToggle")
+    .addEventListener("click", handleToggleClick);
+</script>

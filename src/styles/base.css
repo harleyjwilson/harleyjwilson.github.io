@@ -4,6 +4,11 @@
 
 :root {
     --primary-color: #2563eb; /* TailwindCSS blue-600 */
+    --hover-brightness: 20%;
+}
+
+.dark {
+    --primary-color: #60a5fa; /* TailwindCSS blue-400 */
 }
 
 a:link,
@@ -21,5 +26,10 @@ svg {
 
 a:hover,
 svg:hover {
-    filter: brightness(85%);
+    filter: brightness(calc(100% - var(--hover-brightness)));
+}
+
+.dark a:hover,
+.dark svg:hover {
+    filter: brightness(calc(100% + var(--hover-brightness)));
 }
