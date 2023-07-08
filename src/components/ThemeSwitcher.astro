@@ -39,11 +39,11 @@ const handleToggleClick = () => {
     document.documentElement.classList.toggle("dark");
 
     if (document.documentElement.classList.contains("dark")) {
-        localStorage.setItem("theme", "light");
+        localStorage.setItem("theme", "dark");
         document.getElementById("themeToggle").style.transform =
             "rotate(90deg)";
     } else {
-        localStorage.setItem("theme", "dark");
+        localStorage.setItem("theme", "light");
         document.getElementById("themeToggle").style.transform =
             "rotate(0deg)";
     }
