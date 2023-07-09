@@ -1,0 +1,56 @@
+---
+import Layout from "../layouts/PageLayout.astro";
+---
+
+<Layout>
+    <div
+        id="role"
+        class="text-lg font-semibold transition-opacity duration-1000 ease-in-out opacity-100"
+    >
+        Software Developer
+    </div>
+    <p>
+        I love improving my skills as a developer and working on elegant
+        solutions to complex problems.
+    </p>
+    <p>
+        Feel free to reach out via <a
+            href="mailto:hi@harleyjwilson.com?subject=Hello">email</a
+        >. Consider sharing your favourite books, music, podcasts, memes, etc.
+    </p>
+</Layout>
+
+<script>
+    const role = [
+        "Software Developer",
+        "Problem Solver",
+        "Analytical Thinker",
+        "Team Player",
+        "Effective Communicator",
+        "Self-Motivated Learner",
+    ];
+    const transitionTime = 1000;
+    const holdTime = 6000;
+    const roleHeading = document.querySelector("#role");
+    let index = 0;
+
+    setInterval(function () {
+        index = loopNumber(index, role.length);
+        roleHeading !== null ? fade(roleHeading) : null;
+        setTimeout(function () {
+            roleHeading !== null
+                ? (roleHeading.innerHTML = `${role[index]}`)
+                : null;
+        }, transitionTime);
+        setTimeout(function () {
+            roleHeading !== null ? fade(roleHeading) : null;
+        }, transitionTime);
+    }, holdTime);
+
+    const loopNumber = (index: number, max: number) => (index += 1) % max;
+
+    const fade = (element: Element) => {
+        element?.classList.toggle("opacity-0");
+        element?.classList.toggle("opacity-100");
+    };
+</script>
