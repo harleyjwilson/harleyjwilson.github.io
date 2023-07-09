@@ -1,0 +1,18 @@
+---
+const LINKS = [
+    {
+        path: "/about",
+        title: "About",
+    },
+];
+---
+
+<ul class="flex gap-4 md:gap-6">
+    {
+        LINKS.map((links) => (
+            <li class="m-auto font-[550]">
+                <a href={links.path}>{links.title}</a>
+            </li>
+        ))
+    }
+</ul>
