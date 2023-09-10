@@ -14,7 +14,7 @@ This site features the projects I am working on and my posts on what I am curren
 
 **Contact**
 
-You can find me on [Twitter](https://twitter.com/harleyjwilson/) and [LinkedIn](https://www.linkedin.com/in/harleyjwilson/) or [send me an email](mailto:hi@harleyjwilson.com?subject=Hello). Check out my code on [GitHub](https://github.com/harleyjwilson).
+You can find me on [LinkedIn](https://www.linkedin.com/in/harleyjwilson/) or [send me an email](mailto:hi@harleyjwilson.com?subject=Hello). Check out my code on [GitHub](https://github.com/harleyjwilson).
 
 When you email me, I'll reply, even if it takes a bit longer. I enjoy the randomness of connecting with new people through my site.
 
