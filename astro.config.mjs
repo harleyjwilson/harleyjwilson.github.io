@@ -5,6 +5,6 @@ import { defineConfig } from "astro/config";
 
 // https://astro.build/config
 export default defineConfig({
-    site: "https://harleyjwilson.com",
-    integrations: [tailwind(), mdx(), sitemap()],
+  site: "https://harleyjwilson.com",
+  integrations: [tailwind(), sitemap(), mdx()]
 });

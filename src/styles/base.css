@@ -3,12 +3,14 @@
 @tailwind utilities;
 
 :root {
-    --primary-color: #2563eb; /* TailwindCSS blue-600 */
+    /* TailwindCSS blue-600 */
+    --primary-color: #2563eb;
     --hover-brightness: 20%;
 }
 
 .dark {
-    --primary-color: #60a5fa; /* TailwindCSS blue-400 */
+    /* TailwindCSS blue-400 */
+    --primary-color: #60a5fa;
 }
 
 a:link,
