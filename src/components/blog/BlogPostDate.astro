@@ -1,0 +1,17 @@
+---
+export interface Props {
+  date: Date;
+}
+
+const { date } = Astro.props;
+---
+
+<time class="text-gray-500 basis-24 md:basis-32" datetime={date.toISOString()}>
+  {
+    date.toLocaleDateString("en-au", {
+      year: "numeric",
+      month: "long",
+      day: "2-digit",
+    })
+  }
+</time>

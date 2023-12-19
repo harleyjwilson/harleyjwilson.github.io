@@ -1,0 +1,29 @@
+---
+import FormattedDate from "./BlogRollDate.astro";
+
+const { posts } = Astro.props;
+let visiblePosts = posts.filter(
+  (post: { data: { hidden: boolean } }) => post.data.hidden !== true
+);
+---
+
+<section>
+  <ul class="list-none p-0">
+    {
+      visiblePosts.length > 0 ? (
+        visiblePosts.map(
+          (post: { data: { published: Date; title: string }; slug: any }) => (
+            <li class="flex gap-2 md:gap-8">
+              <div class="text-gray-500 whitespace-nowrap basis-24 md:basis-32">
+                <FormattedDate date={post.data.published} />
+              </div>
+              <a href={`/blog/${post.slug}/`}>{post.data.title}</a>
+            </li>
+          )
+        )
+      ) : (
+        <li>No posts yet...</li>
+      )
+    }
+  </ul>
+</section>

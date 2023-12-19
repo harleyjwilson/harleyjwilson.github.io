@@ -1,0 +1,13 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/PageLayout.astro";
+import BlogRoll from "../../components/blog/BlogRoll.astro";
+
+const posts = (await getCollection("blog")).sort(
+  (a, b) => b.data.published.valueOf() - a.data.published.valueOf()
+);
+---
+
+<Layout>
+  <BlogRoll posts={posts} />
+</Layout>
