@@ -1,6 +1,6 @@
 ---
 title: Markdown Style Guide
-description: Here is a sample of some basic Markdown syntax that can be used when writing Markdown content in Astro.
+description: This is the basic description for the Markdown Style Guide blog post. 
 published: 2023-01-01T00:00:01Z
 hidden: true
 ---
