@@ -5,14 +5,17 @@ import FormattedDate from "../components/blog/BlogPostDate.astro";
 
 type Props = CollectionEntry<"blog">["data"];
 
-const { title, published } = Astro.props;
+const { title, published, description } = Astro.props;
 ---
 
 <Layout title={title}>
   <article>
-    <h1 class="mb-2 text-center">{title}</h1>
-    <div class="text-gray-500 text-right">
+    <h1 class="mb-2 pb-4 text-center">{title}</h1>
+    <div class="text-gray-500 text-right pb-4">
       <FormattedDate date={published} />
+    </div>
+    <div class="text-gray-500 pb-4">
+      {description ?? null}
     </div>
     <slot />
   </article>
