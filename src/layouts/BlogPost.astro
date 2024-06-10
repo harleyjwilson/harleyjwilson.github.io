@@ -1,0 +1,44 @@
+---
+import type { CollectionEntry } from "astro:content";
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import FormattedDate from "../components/FormattedDate.astro";
+import Nav from "../components/Nav.astro";
+import { SITE_URL } from "../consts";
+
+type Props = CollectionEntry<"blog">["data"];
+
+const { title, description, pubDate, tags } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={description} />
+  </head>
+  <body>
+    <Header>
+      <Nav />
+    </Header>
+    <main>
+      <h1 class="title">{title}</h1>
+      <FormattedDate date={pubDate} />
+      <slot />
+      <p>
+        <em
+          >Subscribe to the RSS feed <a href=`${SITE_URL}/rss.xml`>here</a>.</em
+        >
+      </p>
+      {
+        tags && (
+          <div>
+            {tags.sort().map((tag) => (
+              <a class="tag" href={`/tags/${tag}/`}>
+                #{tag}
+              </a>
+            ))}
+          </div>
+        )
+      }
+    </main>
+  </body>
+</html>

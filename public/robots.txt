@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://harleyjwilson.com/sitemap-index.xml
