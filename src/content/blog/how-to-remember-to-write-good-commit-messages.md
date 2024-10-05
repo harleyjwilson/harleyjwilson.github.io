@@ -35,7 +35,7 @@ For example, here is the default message if I go to commit this blog post in my 
  10 # ------------------------ >8 ------------------------
  11 # Do not modify or remove the line above.
  12 # Everything below it will be ignored.
- 13 diff --git a/src/content/blog/how-to-write-and-remember-to-write-good-commit-messages.md b/src/content/blog/how-to-write-and-remember-to-write-good-commit-messages.md
+ 13 diff --git a/src/content/blog/how-to-remember-to-write-good-commit-messages.md b/src/content/blog/how-to-remember-to-write-good-commit-messages.md
 ...
 ```
 
@@ -98,8 +98,7 @@ However, by adding a custom template, the message now appears like this:
  53 # ------------------------ >8 ------------------------
  54 # Do not modify or remove the line above.
  55 # Everything below it will be ignored.
- 56 diff --git a/src/content/blog/how-to-write-and-remember-to-write-good-commit-messages.md b/src/content/blog/how-to-write-and-remember-to
-    -write-good-commit-messages.md
+ 56 diff --git a/src/content/blog/how-to-remember-to-write-good-commit-messages.md b/src/content/blog/how-to-remember-to-write-good-commit-messages.md
 ...
 ```
 
