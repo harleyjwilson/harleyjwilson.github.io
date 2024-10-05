@@ -30,7 +30,7 @@ For example, here is the default message if I go to commit this blog post in my 
   5 # Your branch is up to date with 'origin/main'.
   6 #
   7 # Changes to be committed:
-  8 #       new file:   src/content/blog/how-to-write-and-remember-to-write-good-commit-messages.md
+  8 #       new file:   src/content/blog/how-to-remember-to-write-good-commit-messages.md
   9 #
  10 # ------------------------ >8 ------------------------
  11 # Do not modify or remove the line above.
@@ -93,7 +93,7 @@ However, by adding a custom template, the message now appears like this:
  48 # Your branch is up to date with 'origin/main'.
  49 #
  50 # Changes to be committed:
- 51 #       new file:   src/content/blog/how-to-write-and-remember-to-write-good-commit-messages.md
+ 51 #       new file:   src/content/blog/how-to-remember-to-write-good-commit-messages.md
  52 #
  53 # ------------------------ >8 ------------------------
  54 # Do not modify or remove the line above.
