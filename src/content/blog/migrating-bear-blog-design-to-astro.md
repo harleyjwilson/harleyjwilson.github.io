@@ -1,6 +1,7 @@
 ---
 title: 'Migrating Bear Blog Design to Astro'
 pubDate: 2024-06-10
+draft: false
 tags:
 - 'meta'
 ---

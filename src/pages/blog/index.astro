@@ -7,13 +7,13 @@ import FormattedDate from "../../components/FormattedDate.astro";
 import SearchBar from "../../components/SearchBar.astro";
 import Nav from "../../components/Nav.astro";
 
-const posts = (await getCollection("blog")).sort(
-  (b, a) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
-);
+const posts = (await getCollection("blog"))
+  .sort((b: any, a: any) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf())
+  .filter((post: any) => !post.data.draft);
 
 const uniqueTags = [
   ...new Set(
-    posts.flatMap((post) => post.data.tags).filter((tag) => tag !== undefined)
+    posts.flatMap((post: any) => post.data.tags).filter((tag: any) => tag !== undefined)
   ),
 ].sort();
 ---
@@ -31,7 +31,7 @@ const uniqueTags = [
       <SearchBar />
       <ul class="blog-posts">
         {
-          posts.map((post) => (
+          posts.map((post: any) => (
             <li>
               <span>
                 <i>
@@ -45,7 +45,7 @@ const uniqueTags = [
       </ul>
       <div class="tags">
         {
-          uniqueTags.map((tag) => (
+          uniqueTags.map((tag: any) => (
             <a class="tag" href={`/tags/${tag}/`}>
               #{tag}
             </a>
