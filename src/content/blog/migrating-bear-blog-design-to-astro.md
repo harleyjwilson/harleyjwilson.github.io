@@ -1,12 +1,12 @@
 ---
-title: 'Migrating Bear Blog Design to Astro'
+title: "Migrating Bear Blog Design to Astro"
 pubDate: 2024-06-10
 draft: false
 tags:
-- 'meta'
+  - "meta"
 ---
 
-Welcome to my blog! As many developers have their first blog post about creating their blog, I decided to follow suit. 
+Welcome to my blog! As many developers have their first blog post about creating their blog, I decided to follow suit.
 
 Whilst I use [React](https://react.dev/) during my internship, enjoy using [Tailwind CSS](https://tailwindcss.com/) for its ease in prototyping, and experiment with new frameworks like [Svelte](https://svelte.dev/), I wanted a simple and *bear*bones (pun intended) site that is pleasant to use. Having been looking into the IndieWeb blog space for a while, I came across [Bear Blog](https://bearblog.dev).
 
@@ -79,13 +79,17 @@ items: posts.map((post) => ({
 ...
 ```
 
-
 ## Simple Search Field
 
 I will be using Astro as a static site generator and will have no backend, so I would have to outsource the search functionality. [Garrit Franke](https://garrit.xyz/) has a short blog post on setting up a [simple search bar](https://garrit.xyz/posts/2024-04-11-a-simple-search-bar) using [DuckDuckGo](https://duckduckgo.com/) to do the heavy lifting for your. Here is the code you can use on your site (replace `https://yoursite.com` with your URL).
 
 ```html
-<form class="search" method="GET" action="https://duckduckgo.com/" target="_blank">
+<form
+  class="search"
+  method="GET"
+  action="https://duckduckgo.com/"
+  target="_blank"
+>
   <input type="search" name="q" placeholder="Search..." />
   <input type="hidden" name="sites" value="https://yoursite.com" />
 </form>

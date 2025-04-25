@@ -1,9 +1,9 @@
 ---
-title: 'Markdown Cheatsheet'
+title: "Markdown Cheatsheet"
 pubDate: 1970-01-01
 draft: true
 tags:
-- 'markdown'
+  - "markdown"
 ---
 
 Here is a sample of some basic Markdown syntax that can be used when writing Markdown content in Astro.
@@ -30,7 +30,7 @@ The following HTML `<h1>`—`<h6>` elements represent six levels of section head
 
 ## Emphasis
 
-**bold** *italics* ~~strikethrough~~ <mark>mark</mark>
+**bold** _italics_ ~~strikethrough~~ <mark>mark</mark>
 
 ---
 
