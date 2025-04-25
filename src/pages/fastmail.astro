@@ -1,0 +1,28 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import { SITE_DESCRIPTION } from "../consts";
+import Nav from "../components/Nav.astro";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title="Home" description={SITE_DESCRIPTION} />
+    <meta
+      http-equiv="refresh"
+      content="0;url=https://join.fastmail.com/beb3c1ec"
+    />
+  </head>
+  <body>
+    <Header>
+      <Nav />
+    </Header>
+    <main>
+      <p>
+        Please <a href="https://join.fastmail.com/beb3c1ec">click here</a> for the
+        Fastmail referral link if you are not redirected automatically.
+      </p>
+    </main>
+  </body>
+</html>
