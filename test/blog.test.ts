@@ -64,3 +64,21 @@ describe.for(files)("Blog metadata tests for %s", (file) => {
     expect(parsedDate.toString()).not.toBe("Invalid Date");
   });
 });
+
+describe("Ensure blog post titles are unique", async () => {
+  const titles = files.map((file) => {
+    const filePath = path.join(blogDir, file);
+    const content = fs.readFileSync(filePath, "utf-8");
+
+    const match = content.match(/^---([\s\S]*?)---/);
+    const yamlString = match ? match[1] : null;
+    const metadata = yamlString ? parse(yamlString) : null;
+
+    return metadata?.title;
+  });
+
+  test("No duplicate titles", () => {
+    const titleSet = new Set(titles);
+    expect(titleSet.size).toBe(titles.length);
+  });
+});
