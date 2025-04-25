@@ -3,5 +3,5 @@
 
 export const SITE_TITLE = "Harley Wilson";
 export const SITE_DESCRIPTION = "Harley Wilson Personal Site";
-export const SITE_URL = "https://harleyjwilson.com";
+export const SITE_URL = "https://harleyjwilson.github.io";
 export const SEARCH_URL = "https://duckduckgo.com";
