@@ -4,7 +4,6 @@ import Header from "../../components/Header.astro";
 import { SITE_DESCRIPTION } from "../../consts";
 import { getCollection } from "astro:content";
 import FormattedDate from "../../components/FormattedDate.astro";
-import SearchBar from "../../components/SearchBar.astro";
 import Nav from "../../components/Nav.astro";
 
 const posts = (await getCollection("blog"))
@@ -13,7 +12,9 @@ const posts = (await getCollection("blog"))
 
 const uniqueTags = [
   ...new Set(
-    posts.flatMap((post: any) => post.data.tags).filter((tag: any) => tag !== undefined)
+    posts
+      .flatMap((post: any) => post.data.tags)
+      .filter((tag: any) => tag !== undefined)
   ),
 ].sort();
 ---
@@ -28,11 +29,11 @@ const uniqueTags = [
       <Nav />
     </Header>
     <main>
-      <SearchBar />
+      <input id="search" type="text" placeholder="Search..." />
       <ul class="blog-posts">
         {
           posts.map((post: any) => (
-            <li>
+            <li data-title={post.data.title.toLowerCase()}>
               <span>
                 <i>
                   <FormattedDate date={post.data.pubDate} />
@@ -53,5 +54,21 @@ const uniqueTags = [
         }
       </div>
     </main>
+    <script is:inline>
+      const blogPosts = document.querySelectorAll(".blog-posts li");
+
+      document.querySelector("#search")?.addEventListener("input", (e) => {
+        const query = e.target.value.toLowerCase();
+
+        blogPosts.forEach((post) => {
+          const title = post.dataset.title;
+          if (title.includes(query)) {
+            post.style.display = "list-item";
+          } else {
+            post.style.display = "none";
+          }
+        });
+      });
+    </script>
   </body>
 </html>
