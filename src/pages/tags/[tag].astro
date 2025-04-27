@@ -8,20 +8,22 @@ import Nav from "../../components/Nav.astro";
 
 export async function getStaticPaths() {
   const allPosts = (await getCollection("blog")).sort(
-    (b, a) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
+    (b: { data: { pubDate: number } }, a: { data: { pubDate: number } }) =>
+      a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
   );
 
   const uniqueTags = [
     ...new Set(
       allPosts
-        .flatMap((post) => post.data.tags)
-        .filter((tag) => tag !== undefined)
+        .flatMap((post: { data: { tags: string } }) => post.data.tags)
+        .filter((tag: string) => tag !== undefined)
     ),
   ];
 
   return uniqueTags.map((tag) => {
     const filteredPosts = allPosts.filter(
-      (post) => post.data.tags && post.data.tags.includes(tag)
+      (post: { data: { tags: unknown[] } }) =>
+        post.data.tags && post.data.tags.includes(tag)
     );
     return {
       params: { tag },
@@ -30,7 +32,7 @@ export async function getStaticPaths() {
   });
 }
 
-const { tag } = Astro.params;
+const { tag } = Astro.params as { tag: string };
 const { posts } = Astro.props;
 ---
 
@@ -47,16 +49,21 @@ const { posts } = Astro.props;
       <a href="/blog" class="remove-filter">Remove filter</a>
       <ul class="blog-posts">
         {
-          posts.map((post) => (
-            <li>
-              <span>
-                <i>
-                  <FormattedDate date={post.data.pubDate} />
-                </i>
-              </span>
-              <a href={`/blog/${post.slug}/`}>{post.data.title}</a>
-            </li>
-          ))
+          posts.map(
+            (post: {
+              data: { pubDate: unknown; title: unknown };
+              slug: any;
+            }) => (
+              <li>
+                <span>
+                  <i>
+                    <FormattedDate date={post.data.pubDate} />
+                  </i>
+                </span>
+                <a href={`/blog/${post.slug}/`}>{post.data.title}</a>
+              </li>
+            )
+          )
         }
       </ul>
     </main>
