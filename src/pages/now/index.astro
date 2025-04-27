@@ -1,0 +1,84 @@
+---
+import BaseHead from "../../components/BaseHead.astro";
+import Header from "../../components/Header.astro";
+import { SITE_DESCRIPTION } from "../../consts";
+import { getCollection } from "astro:content";
+import Nav from "../../components/Nav.astro";
+
+const mostRecentPost = (await getCollection("now"))
+  .sort((b: any, a: any) => a.data.date.valueOf() - b.data.date.valueOf())
+  .filter((post: any) => !post.data.draft)
+  .shift();
+const { Content } = await mostRecentPost.render();
+---
+
+<html lang="en">
+  <head>
+    <BaseHead title="Now" description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <Header>
+      <Nav />
+    </Header>
+    <main>
+      <h2>What I'm up to now?</h2>
+      <details>
+        <summary>What is this?</summary>
+        <p>
+          Here I keep an up-to-date list about what I'm doing. Think of it as a
+          more relevant "About" page. Inspired by Derek Sivers' <a
+            href="https://sive.rs/nowff">Now page</a
+          >.
+        </p>
+      </details>
+      <p>
+        <i class="last-updated" data-date={mostRecentPost.data.date}>
+          Last updated {
+            new Date(mostRecentPost.data.date).toLocaleDateString("en-GB", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })
+          }
+        </i>
+      </p>
+      <Content />
+    </main>
+    <script is:inline>
+      const calculateLastUpdated = (dateString) => {
+        const now = new Date();
+        const lastUpdated = new Date(dateString);
+        const diffInMins = now - lastUpdated;
+        const diffInDays = Math.floor(diffInMins / (1000 * 60 * 60 * 24));
+        const weeks = Math.floor(diffInDays / 7);
+        const days = diffInDays % 7;
+
+        if (weeks === 0 && days === 0) {
+          return "today";
+        }
+
+        const weekText =
+          weeks > 0 ? `${weeks} week${weeks !== 1 ? "s" : ""}` : "";
+        const dayText = days > 0 ? `${days} day${days !== 1 ? "s" : ""}` : "";
+
+        return [weekText, dayText].filter(Boolean).join(", ") + " ago";
+      };
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const lastUpdatedElement = document.querySelector(".last-updated");
+        if (lastUpdatedElement) {
+          const mostRecentDate = lastUpdatedElement.getAttribute("data-date");
+          if (mostRecentDate) {
+            lastUpdatedElement.innerHTML = `Last updated ${calculateLastUpdated(mostRecentDate)}`;
+          } else {
+            console.error(
+              "The data-date attribute on the most recent now page entry not found."
+            );
+          }
+        } else {
+          console.error("Most recent now page entry not found.");
+        }
+      });
+    </script>
+  </body>
+</html>

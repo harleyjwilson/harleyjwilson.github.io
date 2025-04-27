@@ -184,7 +184,22 @@ ul.blog-posts li a:visited {
   font-size: 0.83rem;
 }
 
+/* markdown rendering */
+h2#footnote-label {
+  display: none;
+}
+
+.footnotes li {
+  font-size: 0.9rem;
+}
+
 /* search */
 form {
   line-height: 1;
+}
+
+/* now page */
+details > summary,
+details > p {
+  font-size: 0.9rem;
 }
