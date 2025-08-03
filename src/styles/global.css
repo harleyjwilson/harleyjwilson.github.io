@@ -100,7 +100,7 @@ pre {
   padding: 20px;
 }
 
-*:not(pre)>code {
+*:not(pre) > code {
   font-family: monospace;
   padding: 2px;
   background-color: var(--code-background-color);
@@ -199,8 +199,8 @@ form {
 }
 
 /* now page */
-details>summary,
-details>p {
+details > summary,
+details > p {
   font-size: 0.9rem;
 }
 
