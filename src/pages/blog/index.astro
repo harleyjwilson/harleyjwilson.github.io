@@ -3,8 +3,8 @@ import BaseHead from "../../components/BaseHead.astro";
 import Header from "../../components/Header.astro";
 import { SITE_DESCRIPTION } from "../../consts";
 import { getCollection } from "astro:content";
-import FormattedDate from "../../components/FormattedDate.astro";
 import Nav from "../../components/Nav.astro";
+import { formatDateShort } from "../../utils";
 
 const posts = (await getCollection("blog"))
   .sort((b: any, a: any) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf())
@@ -36,7 +36,9 @@ const uniqueTags = [
             <li data-title={post.data.title.toLowerCase()}>
               <span>
                 <i>
-                  <FormattedDate date={post.data.pubDate} />
+                  <time datetime={post.data.pubDate.toISOString()}>
+                    {formatDateShort(post.data.pubDate)}
+                  </time>
                 </i>
               </span>
               <a href={`/blog/${post.slug}/`}>{post.data.title}</a>

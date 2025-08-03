@@ -1,10 +1,10 @@
 ---
 import { getCollection } from "astro:content";
 import BaseHead from "../../components/BaseHead.astro";
-import FormattedDate from "../../components/FormattedDate.astro";
 import Header from "../../components/Header.astro";
 import { SITE_DESCRIPTION } from "../../consts";
 import Nav from "../../components/Nav.astro";
+import { formatDateShort } from "../../utils";
 
 export async function getStaticPaths() {
   const allPosts = (await getCollection("blog")).sort(
@@ -50,14 +50,13 @@ const { posts } = Astro.props;
       <ul class="blog-posts">
         {
           posts.map(
-            (post: {
-              data: { pubDate: unknown; title: unknown };
-              slug: any;
-            }) => (
+            (post: { data: { pubDate: Date; title: unknown }; slug: any }) => (
               <li>
                 <span>
                   <i>
-                    <FormattedDate date={post.data.pubDate} />
+                    <time datetime={post.data.pubDate.toISOString()}>
+                      {formatDateShort(post.data.pubDate)}
+                    </time>
                   </i>
                 </span>
                 <a href={`/blog/${post.slug}/`}>{post.data.title}</a>

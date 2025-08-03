@@ -1,0 +1,44 @@
+---
+import { type CollectionEntry, getCollection } from "astro:content";
+import BaseHead from "../../components/BaseHead.astro";
+import Header from "../../components/Header.astro";
+import { SITE_DESCRIPTION } from "../../consts";
+import Nav from "../../components/Nav.astro";
+import { formatDateShort } from "../../utils";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("now");
+  return posts.map((post: { slug: string }) => ({
+    params: { slug: post.slug },
+    props: post,
+  }));
+}
+type Props = CollectionEntry<"now">;
+
+const post = Astro.props;
+const { Content } = await post.render();
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead
+      title={`Now - ${post.data.date.toLocaleDateString("en-GB", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      })}`}
+      description={SITE_DESCRIPTION}
+    />
+  </head>
+  <body>
+    <Header>
+      <Nav />
+    </Header>
+    <main>
+      <h2>What I was up to on {formatDateShort(post.data.date)}</h2>
+      <Content />
+      <p><a href="/now/">← Back to current now</a></p>
+    </main>
+  </body>
+</html>

@@ -2,9 +2,9 @@
 import type { CollectionEntry } from "astro:content";
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
-import FormattedDate from "../components/FormattedDate.astro";
 import Nav from "../components/Nav.astro";
 import { SITE_URL } from "../consts";
+import { formatDateShort } from "../utils";
 
 type Props = CollectionEntry<"blog">["data"];
 
@@ -21,7 +21,9 @@ const { title, description, pubDate, tags } = Astro.props;
     </Header>
     <main>
       <h1 class="title">{title}</h1>
-      <FormattedDate date={pubDate} />
+      <time datetime={pubDate.toISOString()}>
+        {formatDateShort(pubDate)}
+      </time>
       <slot />
       <p>
         <em
