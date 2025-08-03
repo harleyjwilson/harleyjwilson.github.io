@@ -4,11 +4,14 @@ import Header from "../../components/Header.astro";
 import { SITE_DESCRIPTION } from "../../consts";
 import { getCollection } from "astro:content";
 import Nav from "../../components/Nav.astro";
+import { formatDateFull, formatDateShort } from "../../utils";
 
-const mostRecentPost = (await getCollection("now"))
+const allNowPosts = (await getCollection("now"))
   .sort((b: any, a: any) => a.data.date.valueOf() - b.data.date.valueOf())
-  .filter((post: any) => !post.data.draft)
-  .shift();
+  .filter((post: any) => !post.data.draft);
+const mostRecentPost = allNowPosts[0];
+const secondMostRecent = allNowPosts[1];
+const thirdMostRecent = allNowPosts[2];
 const { Content } = await mostRecentPost.render();
 ---
 
@@ -33,16 +36,36 @@ const { Content } = await mostRecentPost.render();
       </details>
       <p>
         <i class="last-updated" data-date={mostRecentPost.data.date}>
-          Last updated {
-            new Date(mostRecentPost.data.date).toLocaleDateString("en-GB", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })
-          }
+          Last updated {formatDateFull(new Date(mostRecentPost.data.date))}
         </i>
       </p>
       <Content />
+
+      {
+        (secondMostRecent || thirdMostRecent) && (
+          <div class="previous-posts">
+            <p>
+              {secondMostRecent && (
+                <a href={`/then/${secondMostRecent.slug}`}>
+                  {formatDateShort(new Date(secondMostRecent.data.date))}
+                </a>
+              )}
+              {secondMostRecent && thirdMostRecent && " | "}
+              {thirdMostRecent && (
+                <a href={`/then/${thirdMostRecent.slug}`}>
+                  {formatDateShort(new Date(thirdMostRecent.data.date))}
+                </a>
+              )}
+              {(secondMostRecent || thirdMostRecent) && (
+                <>
+                  {" | "}
+                  <a href="/then">More...</a>
+                </>
+              )}
+            </p>
+          </div>
+        )
+      }
     </main>
     <script is:inline>
       const calculateLastUpdated = (dateString) => {

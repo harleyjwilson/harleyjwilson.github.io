@@ -1,0 +1,43 @@
+---
+import BaseHead from "../../components/BaseHead.astro";
+import Header from "../../components/Header.astro";
+import { SITE_DESCRIPTION } from "../../consts";
+import { getCollection } from "astro:content";
+import Nav from "../../components/Nav.astro";
+import { formatDateShort } from "../../utils";
+
+const posts = (await getCollection("now"))
+  .sort((b: any, a: any) => a.data.date.valueOf() - b.data.date.valueOf())
+  .filter((post: any) => !post.data.draft);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title="Then" description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <Header>
+      <Nav />
+    </Header>
+    <main>
+      <h2>What I was up to then</h2>
+      <p>
+        A reverse chronological archive of all my "now" posts, showing what I
+        was working on and thinking about at different points in time.
+      </p>
+
+      <ul class="then-posts">
+        {
+          posts.map((post: any) => (
+            <li>
+              <a href={`/then/${post.slug}/`}>
+                {formatDateShort(post.data.date)}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </main>
+  </body>
+</html>
