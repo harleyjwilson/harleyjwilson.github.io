@@ -8,8 +8,8 @@ import { formatDateShort } from "../../utils";
 
 export async function getStaticPaths() {
   const allPosts = (await getCollection("blog")).sort(
-    (b: { data: { pubDate: number } }, a: { data: { pubDate: number } }) =>
-      a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
+    (b: { data: { published: number } }, a: { data: { published: number } }) =>
+      a.data.published.valueOf() - b.data.published.valueOf()
   );
 
   const uniqueTags = [
@@ -50,12 +50,12 @@ const { posts } = Astro.props;
       <ul class="blog-posts">
         {
           posts.map(
-            (post: { data: { pubDate: Date; title: unknown }; slug: any }) => (
+            (post: { data: { published: Date; title: unknown }; slug: any }) => (
               <li>
                 <span>
                   <i>
-                    <time datetime={post.data.pubDate.toISOString()}>
-                      {formatDateShort(post.data.pubDate)}
+                    <time datetime={post.data.published.toISOString()}>
+                      {formatDateShort(post.data.published)}
                     </time>
                   </i>
                 </span>

@@ -8,7 +8,7 @@ import { formatDateShort } from "../../utils";
 
 const posts = (await getCollection("now"))
   .sort((b: any, a: any) => a.data.date.valueOf() - b.data.date.valueOf())
-  .filter((post: any) => !post.data.draft);
+  .filter((post: any) => post.data.status === "published");
 ---
 
 <!doctype html>

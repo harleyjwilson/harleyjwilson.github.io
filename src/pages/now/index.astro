@@ -8,7 +8,7 @@ import { formatDateFull, formatDateShort } from "../../utils";
 
 const allNowPosts = (await getCollection("now"))
   .sort((b: any, a: any) => a.data.date.valueOf() - b.data.date.valueOf())
-  .filter((post: any) => !post.data.draft);
+  .filter((post: any) => post.data.status === "published");
 const mostRecentPost = allNowPosts[0];
 const secondMostRecent = allNowPosts[1];
 const thirdMostRecent = allNowPosts[2];

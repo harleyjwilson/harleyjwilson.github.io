@@ -7,8 +7,8 @@ import Nav from "../../components/Nav.astro";
 import { formatDateShort } from "../../utils";
 
 const posts = (await getCollection("blog"))
-  .sort((b: any, a: any) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf())
-  .filter((post: any) => !post.data.draft);
+  .sort((b: any, a: any) => a.data.published.valueOf() - b.data.published.valueOf())
+  .filter((post: any) => post.data.status === "published");
 
 const uniqueTags = [
   ...new Set(
@@ -36,8 +36,8 @@ const uniqueTags = [
             <li data-title={post.data.title.toLowerCase()}>
               <span>
                 <i>
-                  <time datetime={post.data.pubDate.toISOString()}>
-                    {formatDateShort(post.data.pubDate)}
+                  <time datetime={post.data.published.toISOString()}>
+                    {formatDateShort(post.data.published)}
                   </time>
                 </i>
               </span>

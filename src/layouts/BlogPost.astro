@@ -8,7 +8,7 @@ import { formatDateShort } from "../utils";
 
 type Props = CollectionEntry<"blog">["data"];
 
-const { title, description, pubDate, tags } = Astro.props;
+const { title, description, published, tags } = Astro.props;
 ---
 
 <html lang="en">
@@ -21,8 +21,8 @@ const { title, description, pubDate, tags } = Astro.props;
     </Header>
     <main>
       <h1 class="title">{title}</h1>
-      <time datetime={pubDate.toISOString()}>
-        {formatDateShort(pubDate)}
+      <time datetime={published.toISOString()}>
+        {formatDateShort(published)}
       </time>
       <slot />
       <p>

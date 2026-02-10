@@ -7,7 +7,7 @@ const parser = new MarkdownIt();
 
 export async function GET(context) {
   const posts = (await getCollection("blog")).filter(
-    (post) => !post.data.draft,
+    (post) => post.data.status === "published",
   );
   return rss({
     title: SITE_TITLE,
