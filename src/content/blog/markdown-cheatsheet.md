@@ -1,7 +1,7 @@
 ---
 title: "Markdown Cheatsheet"
-pubDate: 1970-01-01
-draft: true
+published: 1970-01-01
+status: "draft"
 tags:
   - "markdown"
 ---

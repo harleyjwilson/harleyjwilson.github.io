@@ -1,7 +1,7 @@
 ---
 title: "How to Remember to Write Good Commit Messages"
-pubDate: 2024-10-05
-draft: false
+published: 2024-10-05
+status: "published"
 tags:
   - "git"
 ---
