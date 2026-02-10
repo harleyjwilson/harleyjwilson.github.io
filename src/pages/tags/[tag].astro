@@ -8,22 +8,19 @@ import { formatDateShort } from "../../utils";
 
 export async function getStaticPaths() {
   const allPosts = (await getCollection("blog")).sort(
-    (b: { data: { published: number } }, a: { data: { published: number } }) =>
-      a.data.published.valueOf() - b.data.published.valueOf()
+    (b, a) => a.data.published.valueOf() - b.data.published.valueOf(),
   );
 
   const uniqueTags = [
     ...new Set(
       allPosts
-        .flatMap((post: { data: { tags: string } }) => post.data.tags)
-        .filter((tag: string) => tag !== undefined)
+        .flatMap((post) => post.data.tags ?? [])
     ),
   ];
 
   return uniqueTags.map((tag) => {
     const filteredPosts = allPosts.filter(
-      (post: { data: { tags: unknown[] } }) =>
-        post.data.tags && post.data.tags.includes(tag)
+      (post) => post.data.tags?.includes(tag),
     );
     return {
       params: { tag },

@@ -2,14 +2,14 @@ import fs from "fs";
 import path from "path";
 import { describe, expect, test } from "vitest";
 import { parse } from "yaml";
-import { collections } from "../src/content/config";
+import { blogSchema } from "../src/content/config";
 
 const blogDir = path.join(__dirname, "../src/content/blog");
-
-const blogSchema = collections.blog.schema;
-const allKeys = Object.keys(blogSchema._def.shape());
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const shape: Record<string, any> = blogSchema._def.shape();
+const allKeys = Object.keys(shape);
 const isOptional = (key: string) => {
-  const field = blogSchema._def.shape()[key];
+  const field = shape[key];
   return (
     field._def.typeName === "ZodOptional" ||
     field._def.defaultValue !== undefined

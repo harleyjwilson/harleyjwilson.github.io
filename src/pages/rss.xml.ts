@@ -13,7 +13,7 @@ export async function GET(context: APIContext) {
   return rss({
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
-    site: context.site,
+    site: context.site!,
     trailingSlash: false,
     items: posts.map((post) => ({
       ...post.data,

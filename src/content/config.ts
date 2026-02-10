@@ -1,27 +1,27 @@
 import { defineCollection, z } from "astro:content";
 
+export const blogSchema = z.object({
+  title: z.string(),
+  description: z.string().optional(),
+  published: z.coerce.date(),
+  updated: z.coerce.date().optional(),
+  status: z.enum(["draft", "published"]),
+  tags: z.array(z.string()).optional(),
+});
+
 const blog = defineCollection({
   type: "content",
-  // Type-check frontmatter using a schema
-  schema: z.object({
-    title: z.string(),
-    description: z.string().optional(),
-    // Transform string to Date object
-    published: z.coerce.date(),
-    updated: z.coerce.date().optional(),
-    status: z.enum(["draft", "published"]),
-    tags: z.array(z.string()).optional(),
-  }),
+  schema: blogSchema,
+});
+
+export const nowSchema = z.object({
+  date: z.coerce.date(),
+  status: z.enum(["draft", "published"]),
 });
 
 const now = defineCollection({
   type: "content",
-  // Type-check frontmatter using a schema
-  schema: z.object({
-    // Transform string to Date object
-    date: z.coerce.date(),
-    status: z.enum(["draft", "published"]),
-  }),
+  schema: nowSchema,
 });
 
 export const collections = { blog, now };
