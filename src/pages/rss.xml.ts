@@ -1,11 +1,12 @@
 import rss from "@astrojs/rss";
+import type { APIContext } from "astro";
 import { getCollection } from "astro:content";
 import MarkdownIt from "markdown-it";
 import sanitizeHtml from "sanitize-html";
 import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 const parser = new MarkdownIt();
 
-export async function GET(context) {
+export async function GET(context: APIContext) {
   const posts = (await getCollection("blog")).filter(
     (post) => post.data.status === "published",
   );
