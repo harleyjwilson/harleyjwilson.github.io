@@ -1,0 +1,43 @@
+baseURL = "https://harleyjwilson.com/"
+languageCode = "en-au"
+title = "Harley Wilson"
+
+# Output RSS at /rss.xml to preserve the existing feed URL
+[outputFormats]
+  [outputFormats.RSS]
+    baseName = "rss"
+    isPlainText = false
+    mediaType = "application/rss+xml"
+
+[outputs]
+  home = ["HTML", "RSS", "robots"]
+  section = ["HTML"]
+
+[params]
+  favicon = "favicon.svg"
+  description = "Harley Wilson's Personal Site"
+  copyright = "© Harley Wilson"
+  hideMadeWithLine = true
+  dateFormat = "02 Jan 2006"
+
+# Allow raw HTML in markdown (needed for some posts)
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.highlight]
+    style = "github-dark"
+
+[menu]
+  [[menu.main]]
+    name = "Home"
+    url = "/"
+    weight = 10
+  [[menu.main]]
+    name = "Now"
+    url = "/now/"
+    weight = 20
+  [[menu.main]]
+    name = "Blog"
+    url = "/blog/"
+    weight = 30
