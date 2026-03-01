@@ -9,3 +9,7 @@ harleyjwilson.com {
         file_server
     }
 }
+
+www.harleyjwilson.com {
+    redir https://harleyjwilson.com{uri} permanent
+}
