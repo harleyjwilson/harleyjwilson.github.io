@@ -1,0 +1,15 @@
+{{ define "main" }}
+<article>
+  <h2>What I'm up to now?</h2>
+  <p><i>Last updated: {{ .Date.Format (default "1 Jan 1970" .Site.Params.dateFormat) }}</i></p>
+  <details>
+    <summary><small>What is this?</small></summary>
+    <small><p>
+      Here I keep an up-to-date list about what I'm doing. Think of it as a
+      more relevant "About" page. Inspired by Derek Sivers' <a
+        href="https://sive.rs/nowff">Now page</a>.
+    </p></small>
+  </details>
+  {{ .Content }}
+</article>
+{{ end }}

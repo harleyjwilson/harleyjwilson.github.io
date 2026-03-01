@@ -1,0 +1,17 @@
+<div class="post-navigator">
+  <p>
+    {{ if .PrevInSection }}
+    <a href="{{ .PrevInSection.Permalink }}">&laquo; Previous Post</a>
+    {{ else }}
+    <s>&laquo; Previous Post</s>
+    {{ end }}
+  </p>
+  <p>|</p>
+  <p>
+    {{ if .NextInSection }}
+    <a href="{{ .NextInSection.Permalink }}">Next Post &raquo;</a>
+    {{ else }}
+    <s>Next Post &raquo;</s>
+    {{ end }}
+  </p>
+</div>

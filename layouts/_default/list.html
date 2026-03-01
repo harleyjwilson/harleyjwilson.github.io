@@ -1,0 +1,40 @@
+{{ define "main" }}
+<article>
+  {{ if not .Data.Singular }}
+  <h2>Blog</h2>
+  {{ end }}
+  {{ if .Data.Singular }}
+  <h2 style="margin-bottom:0">Filtering for "{{ .Title }}"</h2>
+  <small>
+    <a href="{{ "blog" | relURL }}">Remove filter</a>
+  </small>
+  {{ end }}
+  <ul class="blog-posts">
+    {{ range .Pages }}
+    <li>
+      <span>
+        <i>
+          <time datetime='{{ .Date.Format "2006-01-02" }}'>
+            {{ .Date.Format (default "1 Jan 1970" .Site.Params.dateFormat) }}
+          </time>
+        </i>
+      </span>
+      <a href="{{ .Permalink }}">{{ .Title }}</a>
+    </li>
+    {{ else }}
+    <li>
+      No posts yet
+    </li>
+    {{ end }}
+  </ul>
+  {{ if not .Data.Singular }}
+  <small>
+    <div>
+      {{ range .Site.Taxonomies.tags.ByCount }}
+      <a href="{{ .Page.Permalink }}">#{{ .Page.Title | lower }}</a>&nbsp;
+      {{ end }}
+    </div>
+  </small>
+  {{ end }}
+</article>
+{{ end }}
